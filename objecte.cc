@@ -30,4 +30,12 @@ void Objecte::paint(pro2::Window& window) const {
     paint_sprite(window, top_left, object_texture_, false);
 }
 
-void Objecte::update(pro2::Window& window, const std::vector<Platform>& platforms){}
+void Objecte::update(pro2::Window& window){}
+
+pro2::Rect Objecte::get_rect() const{
+    int l = pos_.x - 5;
+    int t = pos_.y - 4;
+    int r = pos_.x + 5;
+    int b = pos_.y + 5;
+    return pro2::Rect({l,t,r,b});
+}

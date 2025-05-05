@@ -122,3 +122,10 @@ void Mario::update(pro2::Window& window, const vector<Platform>& platforms) {
         }
     }
 }
+pro2::Rect Mario::get_rect() const{
+    int l = pos_.x - 6;
+    int t = pos_.y - 15;
+    int r = pos_.x + 6;
+    int b = pos_.y;
+    return pro2::Rect({l,t,r,b});
+}

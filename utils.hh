@@ -46,6 +46,8 @@ void paint_square(pro2::Window& window, Rect& r, pro2::Color color, int size);
 
 void paint_rect(pro2::Window& window, Rect& r, pro2::Color color);
 
+bool objects_collision(const pro2::Rect& r1, const pro2::Rect& r2);
+
 }  // namespace pro2
 
 

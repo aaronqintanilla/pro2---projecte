@@ -15,6 +15,8 @@ class Game {
     std::vector<Platform> platforms_;
     std::list<Objecte> coins_;
 
+    int coins_collected;
+
     bool finished_;
     bool paused_;
 

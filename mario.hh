@@ -55,6 +55,8 @@ class Mario {
 
     void update(pro2::Window& window, const std::vector<Platform>& platforms);
 
+    pro2::Rect get_rect() const;
+
  private:
     static const std::vector<std::vector<int>> mario_sprite_normal_;
     static const std::vector<std::vector<int>> mario_sprite_normal_2;

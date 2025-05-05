@@ -18,7 +18,8 @@ Game::Game(int width, int height)
         Objecte({380,90}),
       },
       paused_ (false),
-      finished_(false) {
+      finished_(false),
+      coins_collected(0) {
     for (int i = 1; i < 20; i++) {
         platforms_.push_back(Platform(250 + i * 200, 400 + i * 200, 150, 161));
     }
@@ -45,9 +46,24 @@ void Game::process_keys(pro2::Window& window) {
 void Game::update_objects(pro2::Window& window) {
     mario_.update(window, platforms_);
     mario2_.update(window, platforms_);
-    for(Objecte& coin : coins_){
-        coin.update(window,platforms_);
+
+    if (not coins_.empty()) {
+        list<Objecte>::iterator it = coins_.begin();
+        while (it != coins_.end()) {
+            it->update(window);
+            
+            pro2::Rect rmario = mario_.get_rect();
+            pro2::Rect rcoin = it->get_rect();
+            
+            if (objects_collision(rmario, rcoin)) {
+                ++coins_collected;
+                it = coins_.erase(it);
+            }
+            else ++it;
+        }
+        cout << coins_collected << endl;
     }
+    
 }
 
 void Game::update_camera(pro2::Window& window) {
@@ -109,19 +125,6 @@ void Game::paint(pro2::Window& window) {
     for(Objecte& coin : coins_){
         coin.paint(window);
     }
-    int cont = 0;
-    if (not coins_.empty()) {
-        list<Objecte>::iterator it = coins_.begin();
-        while (it != coins_.end()) {
-            Pt act = it->pos();
-            Pt mario_act = mario_.pos();
-            if ((abs((act.x -mario_act.x) < 5) and (abs((act.y - mario_act.y)) < 5))) {
-                ++cont;
-                it = coins_.erase(it);
-            }
-            else ++it;
-        }
-        cout << cont << endl;
-        }
+    
 }
 

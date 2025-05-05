@@ -18,11 +18,14 @@ class Objecte {
         Objecte(pro2::Pt pos): pos_(pos){}
         
         void paint(pro2::Window& window) const;
-        void update(pro2::Window& window, const std::vector<Platform>& platforms);
+        void update(pro2::Window& window);
 
         pro2::Pt pos() const {
-        return pos_;
-    }
+            return pos_;
+            
+        }
+
+        pro2::Rect get_rect() const;
 
 
 
